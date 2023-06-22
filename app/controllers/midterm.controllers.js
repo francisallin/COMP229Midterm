@@ -1,7 +1,7 @@
 //db connection and all other heavy-liftings
 const Student = require('../models/midterm.models');
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if(!req.body.name){
         return res.status(400).send({
             'message': "name cannot be empty"
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
         age: req.body.age,
         major: req.body.major
     })
-    student.save() 
+    await student.save() 
     .then(data => res.send(data))
     .catch(error => {
         res.status(500).send({
@@ -32,8 +32,8 @@ exports.create = (req, res) => {
     })
 }
 
-exports.findAll = (req,res) => { 
-    Student.find()//find is a default function of mongoDB
+exports.findAll = async (req,res) => { 
+    await Student.find()//find is a default function of mongoDB
     .then(students => {
         res.send(students)
     })
@@ -45,9 +45,9 @@ exports.findAll = (req,res) => {
     })
 }
 
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
     //console.log(req.params.id)
-    Student.findById(req.params.id)
+    await Student.findById(req.params.id)
     .then(students => {
         if (!students){
             res.status(404).send({'message': 'id not found'})
@@ -63,7 +63,7 @@ exports.findOne = (req, res) => {
     })
 }
 
-exports.update = (req, res) =>{
+exports.update = async (req, res) =>{
     if(!req.body.name){
         return res.status(400).send({
             'message': "name cannot be empty"
@@ -80,7 +80,7 @@ exports.update = (req, res) =>{
         }); 
     }
 
-    Student.findByIdAndUpdate(req.params.id, {
+    await Student.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         age: req.body.age,
         major: req.body.major
@@ -101,8 +101,8 @@ exports.update = (req, res) =>{
         })
     })
 }
-exports.delete = (req, res) =>{
-    Student.findByIdAndRemove(req.params.id)
+exports.delete = async (req, res) =>{
+    await Student.findByIdAndRemove(req.params.id)
     .then(
         students => {
             if (!students){
