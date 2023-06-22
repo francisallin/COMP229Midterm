@@ -7,7 +7,6 @@ module.exports = (app) => {
     app.get('/students', midterm.findAll) ;
 
     app.get('/students/:id', midterm.findOne) ;
-    // : means there are chances to receive req
 
     app.put('/students/:id', midterm.update) 
 

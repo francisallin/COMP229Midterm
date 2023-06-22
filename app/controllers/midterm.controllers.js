@@ -17,7 +17,7 @@ exports.create = (req, res) => {
             'message': "age cannot be empty"
         }); 
     }
-    const student = new Student({ //using lower case student here will cause error
+    const student = new Student({ //using lower case 'student' here will cause error of abiguity
         name : req.body.name,
         age: req.body.age,
         major: req.body.major
@@ -32,8 +32,8 @@ exports.create = (req, res) => {
     })
 }
 
-exports.findAll = (req,res) => { //find is a default function of mongoDB
-    Student.find()
+exports.findAll = (req,res) => { 
+    Student.find()//find is a default function of mongoDB
     .then(students => {
         res.send(students)
     })

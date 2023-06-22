@@ -7,6 +7,6 @@ const StudentSchema = mongoose.Schema({
 },{
     timestamps: true
 });
-//creates a collection of particular db of mongodb
+//creates a collection of particular obj mongodb
 //return the mongoose obj
 module.exports = mongoose.model('student', StudentSchema);
