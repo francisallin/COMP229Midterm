@@ -1,4 +1,4 @@
-//get app from index
+
 module.exports = (app) => {
     const midterm = require('../controllers/midterm.controllers');
 
